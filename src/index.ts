@@ -8,7 +8,6 @@ import {
   type Operation,
   resource,
   run,
-  spawn,
 } from "effection"
 
 type JobStatus = "pending" | "running" | "done" | "failed"
@@ -231,7 +230,7 @@ function spawnJob(job: Job) {
   })
 }
 
-let isShuttingDown = false
+const isShuttingDown = false
 
 function* createWorkerLoop(db: Database.Database): Operation<undefined> {
   const workerName = yield* WorkerName.expect()
